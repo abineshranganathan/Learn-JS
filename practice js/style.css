@@ -1,0 +1,6 @@
+div{
+    box-sizing: border-box;
+    padding: 30px;
+    border: 1px solid black;
+    min-height: 50px;
+}
