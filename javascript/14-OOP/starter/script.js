@@ -79,3 +79,40 @@ class PersonCl {
 const jessica = new PersonCl('Jessica', 2000);
 jessica.calcAge();
 jessica.greet();
+
+const account = {
+   owner: 'Jonas',
+   movements: [200, 300, 400, 500, 600],
+   get latest(){
+      return this.movements.slice(-1).pop();
+   },
+   set latest(mov){
+      this.movements.push(mov);
+   } 
+}
+console.log(account.latest)
+account.latest = 700;
+console.log(account.movements)
+console.log(account.latest)
+
+class Account {
+   constructor(fullName, birthYear){
+      this.fullName = fullName;
+      this.birthYear = birthYear
+   }
+
+   get age(){
+      return 2023 - this.birthYear
+   }
+// validating name includes space (' ')
+   set fullName(name){
+      name.includes(' ')? this._fullName = name : alert("Invalid Name")
+   }
+
+   get fullName(){
+      return this._fullName
+   }
+}
+
+const user1= new Account('Jonas Don', 2000)
+console.log(user1.fullName)
