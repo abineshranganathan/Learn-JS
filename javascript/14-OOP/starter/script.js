@@ -119,38 +119,70 @@
 // Inheritance between class using constructor function 
 
 // Inheritance between classes and constructor function
-const Person = function(firstName, birthYear){
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-};
+// const Person = function(firstName, birthYear){
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+// };
 
-Person.prototype.calcAge  = function() {
-    console.log(2022 - this.birthYear)
-};
+// Person.prototype.calcAge  = function() {
+//     console.log(2022 - this.birthYear)
+// };
 
-const Student =  function(firstName, birthYear, course){
-    Person.call(this, firstName, birthYear);
-    this.course = course;
+// const Student =  function(firstName, birthYear, course){
+//     Person.call(this, firstName, birthYear);
+//     this.course = course;
+// }
+
+// // Student.prototype = Object.create(Person.prototype)
+
+// Student.prototype.introduction = function(){
+//     console.log(`I am ${this.firstName} am studying ${this.course}`);
+// } 
+
+// const RankHolder = function(name, birthYear, course, rank){
+//     Student.call(this, name, birthYear, course);
+//     this.rank = rank;
+// }
+// // RankHolder.prototype = Object.create(Student.prototype)
+
+// const steave = new Student('steave', 2002, 'Computer science')
+// steave.introduction();
+// steave.calcAge();
+// console.log(steave)
+
+// const robin = new RankHolder('robin', 2004, 'Electronics engineer', 1)
+// robin.introduction();
+// robin.calcAge();
+// console.log(robin)
+
+// Inheritance between classes using ES6 Class
+class PersonCl {
+    constructor(firstName, birthYear){
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+
+    _calcAge(){
+        console.log(2023 - this.birthYear, "is", this.firstName, "age")
+        return 2023 -this.birthYear
+    }
 }
 
-// Student.prototype = Object.create(Person.prototype)
+class StudentCl extends PersonCl{
+    constructor(firstName, birthYear, course){
+        super(firstName, birthYear);
+        this.course = course;
+    }
 
-Student.prototype.introduction = function(){
-    console.log(`I am ${this.firstName} am studying ${this.course}`);
-} 
+    intro(){
+        console.log("Hi this is", this.firstName);
+    }
 
-const RankHolder = function(name, birthYear, course, rank){
-    Student.call(this, name, birthYear, course);
-    this.rank = rank;
+    calcAge(){
+        console.log("I feel am", 2023 - this.birthYear + 10, "age" )
+    }
 }
-// RankHolder.prototype = Object.create(Student.prototype)
 
-const steave = new Student('steave', 2002, 'Computer science')
-steave.introduction();
-steave.calcAge();
-console.log(steave)
-
-const robin = new RankHolder('robin', 2004, 'Electronics engineer', 1)
-robin.introduction();
-robin.calcAge();
-console.log(robin)
+const martha = new StudentCl('Martha', 2001, "CS");
+console.log(martha);
+martha.calcAge()
