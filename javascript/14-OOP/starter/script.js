@@ -61,58 +61,96 @@
 
 //ES6 Class
 
-class PersonCl {
-   constructor(firstName, birthYear){
-      this.firstName = firstName;
-      this.birthYear = birthYear
-   }
+// class PersonCl {
+//    constructor(firstName, birthYear){
+//       this.firstName = firstName;
+//       this.birthYear = birthYear
+//    }
 
-   calcAge(){
-      console.log(2023 - this.birthYear)
-   }
+//    calcAge(){
+//       console.log(2023 - this.birthYear)
+//    }
 
-   greet(){
-      console.log(`Hey ${this.firstName}`)
-   }
+//    greet(){
+//       console.log(`Hey ${this.firstName}`)
+//    }
+// }
+
+// const jessica = new PersonCl('Jessica', 2000);
+// jessica.calcAge();
+// jessica.greet();
+
+// const account = {
+//    owner: 'Jonas',
+//    movements: [200, 300, 400, 500, 600],
+//    get latest(){
+//       return this.movements.slice(-1).pop();
+//    },
+//    set latest(mov){
+//       this.movements.push(mov);
+//    } 
+// }
+// console.log(account.latest)
+// account.latest = 700;
+// console.log(account.movements)
+// console.log(account.latest)
+
+// class Account {
+//    constructor(fullName, birthYear){
+//       this.fullName = fullName;
+//       this.birthYear = birthYear
+//    }
+
+//    get age(){
+//       return 2023 - this.birthYear
+//    }
+// // validating name includes space (' ')
+//    set fullName(name){
+//       name.includes(' ')? this._fullName = name : alert("Invalid Name")
+//    }
+
+//    get fullName(){
+//       return this._fullName
+//    }
+// }
+
+// const user1= new Account('Jonas Don', 2000)
+// console.log(user1.fullName)
+// Inheritance between class using constructor function 
+
+// Inheritance between classes and constructor function
+const Person = function(firstName, birthYear){
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge  = function() {
+    console.log(2022 - this.birthYear)
+};
+
+const Student =  function(firstName, birthYear, course){
+    Person.call(this, firstName, birthYear);
+    this.course = course;
 }
 
-const jessica = new PersonCl('Jessica', 2000);
-jessica.calcAge();
-jessica.greet();
+// Student.prototype = Object.create(Person.prototype)
 
-const account = {
-   owner: 'Jonas',
-   movements: [200, 300, 400, 500, 600],
-   get latest(){
-      return this.movements.slice(-1).pop();
-   },
-   set latest(mov){
-      this.movements.push(mov);
-   } 
+Student.prototype.introduction = function(){
+    console.log(`I am ${this.firstName} am studying ${this.course}`);
+} 
+
+const RankHolder = function(name, birthYear, course, rank){
+    Student.call(this, name, birthYear, course);
+    this.rank = rank;
 }
-console.log(account.latest)
-account.latest = 700;
-console.log(account.movements)
-console.log(account.latest)
+// RankHolder.prototype = Object.create(Student.prototype)
 
-class Account {
-   constructor(fullName, birthYear){
-      this.fullName = fullName;
-      this.birthYear = birthYear
-   }
+const steave = new Student('steave', 2002, 'Computer science')
+steave.introduction();
+steave.calcAge();
+console.log(steave)
 
-   get age(){
-      return 2023 - this.birthYear
-   }
-// validating name includes space (' ')
-   set fullName(name){
-      name.includes(' ')? this._fullName = name : alert("Invalid Name")
-   }
-
-   get fullName(){
-      return this._fullName
-   }
-}
-
-const user1= new Account('Jonas Don', 2000)
-console.log(user1.fullName)
+const robin = new RankHolder('robin', 2004, 'Electronics engineer', 1)
+robin.introduction();
+robin.calcAge();
+console.log(robin)
